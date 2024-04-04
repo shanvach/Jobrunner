@@ -278,7 +278,7 @@ def __CreateHeater(config, params_dict):
             filename = (
                 config.job.workdir
                 + os.sep
-                + heater_dict["sim_heaterName"]
+                + heater_dict["htr_heaterName"]
                 + "_hdf5_htr_"
                 + key
             )
@@ -385,7 +385,7 @@ def __CreateHeater(config, params_dict):
                 + f'{filename.replace(config.job.workdir + os.sep,"")}'
             )
 
-    if num_heaters != heater_dict["sim_numHeaters"]:
+    if num_heaters != heater_dict["htr_numHeaters"]:
         raise ValueError(
-            f"[jobrunner] Number of heater files not equal to sim_numHeaters"
+            f"[jobrunner] Number of heater files not equal to htr_numHeaters"
         )
