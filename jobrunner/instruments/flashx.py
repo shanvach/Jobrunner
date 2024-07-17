@@ -291,7 +291,7 @@ def __CreateHeater(config, params_dict):
 
             if info["numSites"] == 1:
                 xsite[:] = 0.0
-                ysite[:] = 1e-13
+                ysite[:] =  0.5*(info["ymax"] + info["ymin"])
                 zsite[:] = 0.0
                 radii[:] = 0.2
 
@@ -300,7 +300,7 @@ def __CreateHeater(config, params_dict):
                 sample = halton.random(info["numSites"])
 
                 xsite[:] = info["xmin"] + sample[:, 0] * (info["xmax"] - info["xmin"])
-                ysite[:] = 1e-13
+                ysite[:] = 0.5*(info["ymax"] + info["ymin"])
                 radii[:] = 0.2
 
                 if info["dim"] == 1:
