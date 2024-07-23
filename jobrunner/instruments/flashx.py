@@ -294,7 +294,7 @@ def __CreateHeater(config, params_dict):
                 xsite[:] = 0.0
                 ysite[:] =  0.5*(info["ymax"] + info["ymin"])
                 zsite[:] = 0.0
-                radii[:] = 0.2
+                radii[:] = 0.04
 
             else:
                 halton = qmc.Halton(d=2, seed=1)
@@ -302,7 +302,7 @@ def __CreateHeater(config, params_dict):
 
                 xsite[:] = info["xmin"] + sample[:, 0] * (info["xmax"] - info["xmin"])
                 ysite[:] = 0.5*(info["ymax"] + info["ymin"])
-                radii[:] = 0.2
+                radii[:] = 0.04
 
                 if info["dim"] == 1:
                     zsite[:] = 0.0
@@ -361,6 +361,43 @@ def __CreateHeater(config, params_dict):
                 shape=(1),
                 dtype="float32",
             )
+            hfile.create_dataset(
+                "heater/C3",
+                data=info["C3"],
+                shape=(1),
+                dtype="float32",
+            )
+            hfile.create_dataset(
+                "heater/C2",
+                data=info["C2"],
+                shape=(1),
+                dtype="float32",
+            )
+            hfile.create_dataset(
+                "heater/C1",
+                data=info["C1"],
+                shape=(1),
+                dtype="float32",
+            )
+            hfile.create_dataset(
+                "heater/C0",
+                data=info["C0"],
+                shape=(1),
+                dtype="float32",
+            )
+            hfile.create_dataset(
+                "heater/tbl_thickness",
+                data=info["tbl_thickness"],
+                shape=(1),
+                dtype="float32",
+            )
+            hfile.create_dataset(
+                "heater/non_uniform_temp_flag",
+                data=info["non_uniform_temp_flag"],
+                shape=(1),
+                dtype="int32",
+            )
+
             hfile.create_dataset(
                 "site/num", data=info["numSites"], shape=(1), dtype="int32"
             )
