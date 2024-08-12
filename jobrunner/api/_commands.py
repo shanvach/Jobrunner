@@ -43,6 +43,13 @@ def setup(dirlist, verbose=False, exit_on_failure=False):
             if value:
                 print(f'{" "*4}- {value.replace(basedir,"<ROOT>")}')
 
+        # Build inputfile
+        lib.CreateInputFile(config)
+        if config.job.input:
+            print(f"\n{lib.Color.purple}INPUT: {lib.Color.end}")
+            for value in config.job.input:
+                print(f'{" "*4}- {value.replace(basedir,"<ROOT>")}')
+
         # run a bash process
         lib.BashProcess(basedir, workdir, "job.setup", verbose, exit_on_failure)
 
@@ -77,13 +84,6 @@ def submit(dirlist, verbose=False, exit_on_failure=False):
 
         # parse main dictionary
         config = lib.ParseJobConfig(basedir, workdir)
-
-        # Build inputfile
-        lib.CreateInputFile(config)
-        if config.job.input:
-            print(f"\n{lib.Color.purple}INPUT: {lib.Color.end}")
-            for value in config.job.input:
-                print(f'{" "*4}- {value.replace(basedir,"<ROOT>")}')
 
         # Build targetfile
         lib.CreateTargetFile(config)
