@@ -294,7 +294,7 @@ def __CreateHeater(config, params_dict):
                 xsite[:] = 0.0
                 ysite[:] =  0.5*(info["ymax"] + info["ymin"])
                 zsite[:] = 0.0
-                radii[:] = 0.04
+                radii[:] = 0.01
 
             else:
                 halton = qmc.Halton(d=2, seed=1)
@@ -302,7 +302,7 @@ def __CreateHeater(config, params_dict):
 
                 xsite[:] = info["xmin"] + sample[:, 0] * (info["xmax"] - info["xmin"])
                 ysite[:] = 0.5*(info["ymax"] + info["ymin"])
-                radii[:] = 0.04
+                radii[:] = 0.01
 
                 if info["dim"] == 1:
                     zsite[:] = 0.0
@@ -397,6 +397,19 @@ def __CreateHeater(config, params_dict):
                 shape=(1),
                 dtype="int32",
             )
+            hfile.create_dataset(
+                "heater/heat_flux_flag",
+                data=info["heat_flux_flag"],
+                shape=(1),
+                dtype="int32",
+            )
+            hfile.create_dataset(
+                "heater/nd_heat_flux",
+                data=info["nd_heat_flux"],
+                shape=(1),
+                dtype="float32",
+            )
+
 
             hfile.create_dataset(
                 "site/num", data=info["numSites"], shape=(1), dtype="int32"
